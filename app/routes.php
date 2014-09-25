@@ -11,7 +11,7 @@
 |
 */
 
-Route::resource('posts', 'PostsController');
+Route::resource('/', 'PostsController');
 
 Route::get('login', 'HomeController@showLogin');
 
