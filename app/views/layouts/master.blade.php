@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Blog application">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/yeti-bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/css/blog.css">
     <script src="/js/jquery.min.js"></script>
@@ -45,8 +46,46 @@
         {{{ Session::get('successLoginMessage') }}} 
       </div>
     @endif
+
+    @if (Session::has('errorLoginMessage'))
+      <div class="alert alert-danger alert-dismissable center-block" id="fade_message">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        {{{ Session::get('errorLoginMessage') }}}
+      </div>
+    @endif
+
+    @if (Session::has('successUpdateMessage'))
+      <div class="alert alert-success alert-dismissable center-block" id="fade_message">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        {{{ Session::get('successUpdateMessage') }}}
+      </div>
+    @endif
+
+    @if (Session::has('errorUpdateMessage'))
+      <div class="alert alert-danger alert-dismissable center-block" id="fade_message">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        {{{ Session::get('errorUpdateMessage') }}}
+      </div>
+    @endif
+
+    @if (Session::has('successNewPostMessage'))
+      <div class="alert alert-success alert-dismissable center-block" id="fade_message">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        {{{ Session::get('successNewPostMessage') }}}
+      </div>
+    @endif
+
+    @if (Session::has('errorNewPostMessage'))
+      <div class="alert alert-danger alert-dismissable center-block" id="fade_message">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        {{{ Session::get('errorNewPostMessage') }}}
+      </div>
+    @endif
+
+    <div class="container col-md-6 col-md-offset-3">   
+      @yield('content')
+    </div>
       
-    @yield('content')
    
     @yield('bottomscript')
    
