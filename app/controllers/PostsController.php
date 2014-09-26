@@ -46,13 +46,13 @@ class PostsController extends \BaseController {
 	    // attempt validation
 	    if ($validator->fails())
 	    {
-	    	Session::flash('errorMessage', 'Post could not be create -- see form errors');
+	    	Session::flash('errorNewPostMessage', 'Sorry, but for some reason the entered post could not be created.');
 	        // validation failed, redirect to the post create page with validation errors and old inputs
 	        return Redirect::back()->withInput()->withErrors($validator);
 	    }
 	    else
 	    {
-	    	Session::flash('successMessage', 'Post successfully created');
+	    	Session::flash('successNewPostMessage', 'Another post bites the dust!');
 	    	// save to DB
 			$post = new Post();
 			$post->title = Input::get('title');
@@ -102,13 +102,13 @@ class PostsController extends \BaseController {
 	    // attempt validation
 	    if ($validator->fails())
 	    {
-	    	Session::flash('errorMessage', 'Post could not be updated -- see form errors');
+	    	Session::flash('errorUpdateMessage', 'Your post could not be updated!');
 	        // validation failed, redirect to the post create page with validation errors and old inputs
 	        return Redirect::back()->withInput()->withErrors($validator);
 	    }
 	    else
 	    {
-	    	Session::flash('successMessage', 'Post successfully updated');
+	    	Session::flash('successUpdateMessage', 'Your post has been successfully updated!');
 	    	// save to DB
 			$post->title = Input::get('title');
 			$post->body = Input::get('body');
