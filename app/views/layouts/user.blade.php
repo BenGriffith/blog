@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title')
+@section('topscript')
     <title>Ben Griffith | Login</title>
 @stop
 
@@ -17,7 +17,7 @@
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block">Log In</button>
         </div>
-        
+
 {{ Form::close() }}
      
 @stop
