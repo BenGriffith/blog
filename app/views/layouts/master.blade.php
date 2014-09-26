@@ -82,6 +82,13 @@
       </div>
     @endif
 
+    @if (Session::has('logoutMessage')) 
+      <div class="alert alert-success alert-dismissable center-block" id="fade_message">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        {{{ Session::get('logoutMessage') }}}
+      </div>
+    @endif
+
     <div class="container col-md-6 col-md-offset-3">   
       @yield('content')
     </div>

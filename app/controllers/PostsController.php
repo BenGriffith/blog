@@ -8,7 +8,7 @@ class PostsController extends \BaseController {
 		parent::__construct();
 
 		// run auth filter before all methods on this controller except index
-		$this->beforeFilter('auth.basic', array('except' => array('index')));
+		$this->beforeFilter('auth', array('except' => array('index')));
 	}
 
 	/**
@@ -102,13 +102,13 @@ class PostsController extends \BaseController {
 	    // attempt validation
 	    if ($validator->fails())
 	    {
-	    	Session::flash('errorUpdateMessage', 'Your post could not be updated!');
+	    	Session::flash('errorUpdateMessage', 'Your post was not updated due to application errors!');
 	        // validation failed, redirect to the post create page with validation errors and old inputs
 	        return Redirect::back()->withInput()->withErrors($validator);
 	    }
 	    else
 	    {
-	    	Session::flash('successUpdateMessage', 'Your post has been successfully updated!');
+	    	Session::flash('successUpdateMessage', 'Your post was successfully updated!');
 	    	// save to DB
 			$post->title = Input::get('title');
 			$post->body = Input::get('body');
