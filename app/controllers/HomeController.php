@@ -32,12 +32,12 @@ class HomeController extends BaseController {
 
 		if (Auth::attempt(array('email' => $email, 'password' => $password))) 
 		{
-			Session::flash('successMessage', 'Logged in! Start blogging!');
+			Session::flash('successLoginMessage', 'You are now logged in! Start blogging!');
 			return Redirect::intended(action('PostsController@index'));
 		}
 		else
 		{
-			Session::flash('errorMessage', 'Email or password not found.');
+			Session::flash('errorLoginMessage', 'Please enter a valid email address and password to start blogging.');
 			return Redirect::action('HomeController@showLogin');
 		}
 	}
@@ -45,7 +45,7 @@ class HomeController extends BaseController {
 	public function doLogout() 
 	{
 		Auth::logout();
-		return Redirect::action('PostsController@index');
+		return Redirect::action('HomeController@showLogin');
 	}
 	
 }

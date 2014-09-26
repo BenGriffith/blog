@@ -1,44 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
-    
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-
-    <!-- Font awesome icons -->
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
+    <meta name="description" content="Blog application">
+    <link rel="stylesheet" href="/css/yeti-bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/css/blog.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
 
     @yield('topscript')
   </head>
 
   <body>
     <!-- Fixed navbar -->
-    <div id="navbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+          <a class="navbar-brand" href="http://bengriffith.co">Ben Griffith</a>
         </div>
-        <div class="navbar-collapse collapse navbar-right">
-          <ul class="nav navbar-nav">
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+          <ul class="nav navbar-nav navbar-right">
             <li><a href=" {{{ action('PostsController@index') }}} ">Blog</a></li>
             @if (Auth::check())
               <li><a href=" {{{ action('PostsController@create') }}} ">Create Post</a></li>
@@ -51,20 +39,24 @@
       </div>
     </div>
 
-    @if (Session::has('successMessage'))
-      <div class="alert alert-success"> {{{ Session::get('successMessage') }}} </div>
-    @endif
-    @if (Session::has('errorMessage'))
-      <div class="alert alert-danger"> {{{ Session::get('errorMessage') }}} </div>
+    @if (Session::has('successLoginMessage'))
+      <div class="alert alert-success alert-dismissable center-block" id="fade_message"> 
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        {{{ Session::get('successLoginMessage') }}} 
+      </div>
     @endif
       
     @yield('content')
+   
+    @yield('bottomscript')
    
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="../../dist/js/bootstrap.min.js"></script>
-    @yield('bottomscript')
+    <script>
+      $('#fade_message').delay(2000).fadeOut(1000);
+    </script>
   </body>
 </html>
